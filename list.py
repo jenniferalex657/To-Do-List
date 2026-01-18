@@ -1,37 +1,32 @@
-# Simple To-Do List (10 items)
+tasks = []
+done = []
 
-tasks = [
-    "Buy groceries",
-    "Read a book",
-    "Go for a walk",
-    "Clean the room",
-    "Pay bills",
-    "Call a friend",
-    "Finish homework",
-    "Exercise",
-    "Cook dinner",
-    "Plan the week"
-]
-
-done = [False] * len(tasks)
+print("Enter your tasks.")
+print("Type 'done' when finished adding tasks.\n")
 
 while True:
-    # Show tasks
-    print("\nTo-Do List:")
+    task = input("Add task: ")
+    if task.lower() == "done":
+        break
+    tasks.append(task)
+    done.append(False)
+
+while True:
+    print("\nYour To-Do List:")
     for i, task in enumerate(tasks, start=1):
-        mark = "x" if done[i-1] else " "
+        mark = "x" if done[i - 1] else " "
         print(f"{i}. [{mark}] {task}")
 
-    # Ask which task to toggle
     choice = input("\nEnter task number to toggle (or 'q' to quit): ")
-    if choice.lower() == 'q':
-        print("Bye!")
+
+    if choice.lower() == "q":
+        print("Goodbye!")
         break
-    if choice.isdigit():
+    elif choice.isdigit():
         num = int(choice)
         if 1 <= num <= len(tasks):
-            done[num-1] = not done[num-1]
+            done[num - 1] = not done[num - 1]
         else:
-            print("Invalid task number!")
+            print("Invalid task number.")
     else:
-        print("Please enter a number or 'q' to quit.")
+        print("Please enter a number or 'q'.")
